@@ -1,0 +1,39 @@
+body,
+html {
+  padding: 10px;
+  background: #ccc;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00b7ff;
+}
+.panel-heading-task {
+  padding: 5px;
+  border: 3 outset;
+  background: #eee;
+}
+.panel-body-task {
+  padding: 15px;
+}
+.gradiente-gray {
+  background: #fff;
+  background: -moz-linear-gradient(top, #fff 0%, #f6f6f6 7%, #ededed 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #fff), color-stop(7%, #f6f6f6), color-stop(100%, #ededed));
+  background: -webkit-linear-gradient(top, #fff 0%, #f6f6f6 7%, #ededed 100%);
+  background: -o-linear-gradient(top, #fff 0%, #f6f6f6 7%, #ededed 100%);
+  background: -ms-linear-gradient(top, #fff 0%, #f6f6f6 7%, #ededed 100%);
+  background: linear-gradient(to bottom, #fff 0%, #f6f6f6 7%, #ededed 100%);
+}
+.brand {
+  padding-top: 5px;
+}
+.brand .title {
+  color: #999;
+  font-weight: bold;
+  font-size: 30px;
+  text-shadow: 1px 1px 1px #fff;
+}
+.navbar {
+  background-color: rgba(220,220,220,0.5);
+  box-shadow: none;
+}

@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  div.container.body-content
+    div.row
+      -for(var a = 0; a<5; a++ )
+        div.col-lg-4.col-md-4.col-sm-6.col-xs-12
+          div.panel.panel-default
+            div.panel-heading
+              div.row
+                div.col-md-9
+                  h3.panel-title Title
+                div.col-md-3
+                  lable Date
+            div.panel-body
+              p Se distribuye de forma gratuita,
+            div.panel-task
+              div.panel-heading-task.text-center.gradiente-gray
+                  h3.panel-title Tasks
+              div.panel-body-task
+                p Aqui van las tareas
+            div.panel-footer.clearfix
+              div.pull-right.btn-toolbar
+                a.btn.btn-primary(href='./login') edit
+                a.btn.btn-default(href='#') delete
