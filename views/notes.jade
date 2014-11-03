@@ -1,19 +1,19 @@
 extends layout
 
 block content
-  div.container.body-content
+  div.container
     div.row
-      -for(var a = 0; a<5; a++ )
+      -each note in notes
         div.col-lg-4.col-md-4.col-sm-6.col-xs-12
           div.panel.panel-default
             div.panel-heading
               div.row
                 div.col-md-9
-                  h3.panel-title Title
+                  h3.panel-title= note.title
                 div.col-md-3
                   lable Date
             div.panel-body
-              p Se distribuye de forma gratuita,
+              p= note.body
             div.panel-task
               div.panel-heading-task.text-center.gradiente-gray
                   h3.panel-title Tasks
@@ -21,5 +21,18 @@ block content
                 p Aqui van las tareas
             div.panel-footer.clearfix
               div.pull-right.btn-toolbar
-                a.btn.btn-primary(href='./login') edit
-                a.btn.btn-default(href='#') delete
+                a.btn.btn-primary(href='#' data-toggle='modal' data-target='#'+note._id) show
+                a.btn.btn-primary(data-toggle='tooltip' data-placement='bottom' title='edit' href='./login') 
+                  span.fa.fa-pencil.fa-md
+                a.btn.btn-danger(data-toggle='tooltip' data-placement='bottom' title='detele' href='#') 
+                  span.fa.fa-trash-o.fa-md
+
+        div.modal.fade.bs-example-modal-lg(id= note._id tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidde='true')
+          div.modal-dialog.modal-lg
+            div.modal-content
+              div.modal-header
+                h3= note.title
+              div.modal-body
+                p= note._id
+              div.modal-footer
+                button.btn.btn-danger(data-dismiss='modal') Cancel

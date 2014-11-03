@@ -9,12 +9,12 @@ var NoteSchema = new Schema({
     title: String,
     date: Date,
     body: String,
-    task:{
-    	title: String,
-    	desc: String,
-    	dateDo: Date,
-    	done: Boolean 
-    }
+    task:[{
+            title: String,
+            desc: String,
+            dateDo: Date,
+            done: Boolean 
+        }]
 	});
 
 module.exports = mongoose.model('Notes', NoteSchema);

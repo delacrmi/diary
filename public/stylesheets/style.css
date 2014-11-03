@@ -37,3 +37,6 @@ a {
   background-color: rgba(220,220,220,0.5);
   box-shadow: none;
 }
+#myModal {
+  background-color: #fff;
+}
