@@ -10,7 +10,7 @@ router.get('/',function (req, res) {
 		else if(notes.length === 0)
 			console.log('Notes empty');
 		else
-			res.render('notes',{notes: notes});
+			res.render('notes/notes',{notes: notes});
 	});
 });
 
@@ -27,7 +27,7 @@ router.post('/notes/new',function(req, res) {
 	});
 });
 router.get('/notes/new',function(req, res) {
-	
+	res.render('notes/new',res.data);
 });
 
 module.exports = router;

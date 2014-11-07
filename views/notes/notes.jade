@@ -1,4 +1,8 @@
-extends layout
+extends ../layout
+
+block scripts
+  script(src='/javascripts/bootbox.min.js')
+  script(src='/javascripts/notes/notes.js')
 
 block content
   div.container
@@ -22,17 +26,23 @@ block content
             div.panel-footer.clearfix
               div.pull-right.btn-toolbar
                 a.btn.btn-primary(href='#' data-toggle='modal' data-target='#'+note._id) show
-                a.btn.btn-primary(data-toggle='tooltip' data-placement='bottom' title='edit' href='./login') 
+                a.btn.btn-primary(id='edit-note' data-toggle='tooltip' data-placement='bottom' title='edit' href='./login') 
                   span.fa.fa-pencil.fa-md
                 a.btn.btn-danger(data-toggle='tooltip' data-placement='bottom' title='detele' href='#') 
                   span.fa.fa-trash-o.fa-md
 
-        div.modal.fade.bs-example-modal-lg(id= note._id tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidde='true')
-          div.modal-dialog.modal-lg
-            div.modal-content
-              div.modal-header
-                h3= note.title
-              div.modal-body
-                p= note._id
-              div.modal-footer
-                button.btn.btn-danger(data-dismiss='modal') Cancel
+          div.modal.fade.modal-note(id= note._id)
+            div.modal-dialog
+              div.modal-content
+                div.modal-header
+                  .row
+                    div.col-md-9
+                      h3.panel-title= note.title
+                    div.col-md-3
+                      lable Date
+                      button(type= 'button' data-dismiss= 'modal').close &times;
+                div.modal-body
+                  Hello world!
+                <!-- dialog buttons -->
+                div.modal-footer
+                  button(type='button').btn.btn-primary OK

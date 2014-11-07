@@ -1,0 +1,50 @@
+extends ../layout
+
+block links
+    link(rel='stylesheet', href='/stylesheets/notes/new.css')
+
+block scripts
+  script(src='/javascripts/maskinput.js')
+  script(src='/javascripts/notes/new.js')
+
+block content
+  div.container
+    div.row
+      div.col-lg-offset-1.col-lg-10.col-md-offset-1.col-md-10.col-sm-offset-1.col-sm-10.col-xs-12
+        div.panel.panel-default
+          div.panel-heading
+            div.row
+              div.col-lg-9.col-md-9.col-sm-9.col-xs-9
+                h3.panel-title title
+              div.col-lg-3.col-md-3.col-sm-3.col-xs-3
+                lable Date
+          div.panel-body
+            textarea.form-control(row=8 style='height: 150px' placeholder='Body Note')
+          
+          div.gradiente-gray.panel-heading-task
+            h3.panel-title Tasks
+          
+          .row(style= 'padding: 10px')
+            -for(var a=0; a<4 ; a++)
+              .col-lg-4.col-md-6.col-sm-6.col-xs-12
+                div.panel.panel-success.panel-task
+                  div.panel-heading
+                    .row
+                      .col-lg-9.col-md-9.col-sm-9.col-xs-9.title-task-row
+                        h3.panel-title(id= 'h3-task-title') Title:
+                        input.task-input-transp.task-input-title(type='text' placeholder='Title:' style= 'display: none')
+                      .div-task-date.col-lg-offset-1.col-md-offset-1.col-sm-offset-1.col-xs-offset-1.col-lg-1.col-md-1.col-sm-1.col-xs-1
+                        a.btn.btn-fa-task.btn-task-close(id='task-index' data-toggle='toltip' title='close')
+                          span.fa.fa-close.fa-lg
+                    .row.date-task-row
+                      h3.panel-title(id= 'h3-task-date') Date: mm/dd/yyyy
+                      input.task-input-transp.task-input-date(id= 'input-task-date' type='text' placeholder='Date: dd/mm/yy' style= 'display: none')
+                  div.panel-body
+                    textarea.form-control.task-area-body(row=8 style='height: 100px' placeholder='Body task')
+
+          div.panel-footer.clearfix
+            div.pull-right.btn-toolbar
+              a.btn.btn-primary(id='edit-note' data-toggle='tooltip' data-placement='bottom' title='edit' href='/login') 
+                span.fa.fa-pencil.fa-md
+              a.btn.btn-danger(data-toggle='tooltip' data-placement='bottom' title='detele' href='#') 
+                span.fa.fa-trash-o.fa-md

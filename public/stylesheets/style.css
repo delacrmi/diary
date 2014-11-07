@@ -8,9 +8,8 @@ a {
   color: #00b7ff;
 }
 .panel-heading-task {
-  padding: 5px;
+  padding: 7px;
   border: 3 outset;
-  background: #eee;
 }
 .panel-body-task {
   padding: 15px;
