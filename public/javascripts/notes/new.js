@@ -42,6 +42,9 @@ $(document).on('ready',function() {
     $($elem1).on({
       'focusout': function() {
         loseFocusDate($elem1,elem,'Title:');
+      },
+      'keyup': function() {
+        maxtext($elem1);
       }
     });
 
@@ -94,16 +97,16 @@ $(document).on('ready',function() {
       $(elem1).css('display', 'block')
   }
 
-//Date Time Picker
-function setDateTimePicker () {
-  /*var nowTemp = new Date();
-  var now = new Date(nowTemp.getFullYear(), 
-    nowTemp.getMonth(), nowTemp.getDate(),0,0,0,0);*/
+// limit the length
+  function maxtext (elem) {
+    var limit = parseInt($(elem).attr('maxlength'));
+    var text = $(elem).val();
+    var count = text.length;
 
-  $(this).datepicker({
-    calendarWeeks: true,
-    autoclose: true,
-    todayHighlight: true
-  });
-}
+    if(count > limit){
+      text = text.substr(0,limit);
+      $(elem).val(text);
+    }
+  }
+
 })
