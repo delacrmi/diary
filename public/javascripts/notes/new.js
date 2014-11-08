@@ -78,10 +78,10 @@ $(document).on('ready',function() {
 //when the element lost the focuse chagen it
   function loseFocusDate(elem,elem1,valf) {
     
-    var date =  $(elem1).attr('id') === 'h3-task-date' ? 'Date: ': ''
-    
+    var date =  valf === 'mm/dd/yyyy' ? 'Date: ': ''
+    console.log(date+' '+valf);
     date += $(elem).val();
-
+    
     if(!date || date === 'Date: ')
       date += valf;
 

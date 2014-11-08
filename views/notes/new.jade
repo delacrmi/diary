@@ -31,14 +31,15 @@ block content
                   div.panel-heading
                     .row
                       .col-lg-9.col-md-9.col-sm-9.col-xs-9.title-task-row
-                        h3.panel-title(id= 'h3-task-title') Title:
+                        h3.panel-title Title:
                         input.task-input-transp.task-input-title(type='text' maxlength='50' placeholder='Title:' style= 'display: none')
                       .div-task-date.col-lg-offset-1.col-md-offset-1.col-sm-offset-1.col-xs-offset-1.col-lg-1.col-md-1.col-sm-1.col-xs-1
                         a.btn.btn-fa-task.btn-task-close(id='task-index' data-toggle='toltip' title='close')
                           span.fa.fa-close.fa-lg
-                    .row.date-task-row
-                      h3.panel-title(id= 'h3-task-date') Date: mm/dd/yyyy
-                      input.task-input-transp.task-input-date(id= 'input-task-date' type='text' placeholder='Date: dd/mm/yy' style= 'display: none')
+                    .row(style= 'padding: 5px')
+                      .col-lg-offset-5.col-lg-7.date-task-row
+                        h3.panel-title Date: mm/dd/yyyy
+                        input.task-input-transp.task-input-date(id= 'input-task-date' type='text' placeholder='Date: dd/mm/yy' style= 'display: none')
                   div.panel-body
                     textarea.form-control.task-area-body(row=8 style='height: 100px' placeholder='Body task')
 
