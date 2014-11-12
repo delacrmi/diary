@@ -1,55 +1,101 @@
 $(document).on('ready',function() {
 
   //js variables
-
-//task date
-  var $txtTaskDate = $('.task-date');
-  var $divTaskDate = $('.date-task-row');
-  var $taskH3Date = $('.date-task-row h3');
-  var $taskInputDate= $('.task-input-date');
-
-//task title
-  //var $divTasktitle= $('.title-task-row');
-  var $taskH3title = $('.title-task-row h3');
-  var $taskInputTitle= $('.task-input-title');
-  var $taskAreaBody = $('.task-area-body')
-
-// Code for task Date
-  $($taskH3Date).each(function(index,elem) {
-
-    var $elem1 = $($taskInputDate).eq(index);
-    var $body = $($taskAreaBody).eq(index);
-
-    $($elem1).datepicker({
+  var dateFormat = {
       calendarWeeks: true,
       autoclose: true,
       todayHighlight: true
-    }).on('hide',function() {
-      loseFocusDate($elem1,elem,'mm/dd/yyyy');
-      $($body).focus();
+    };
+
+//note variables
+  var $titleNote = $('#title-note'); //save
+  var $inputTitleNote = $('#input-title-note');
+  var $dateNote = $('#date-note'); //save
+  var $inputDateNote = $('#input-date-note');
+  var $txtBodyNote = $('#txta-body-note'); //save
+  var $btnSaveNote = $('#save-note');
+  var $btnCancelNote = $('#cancel-note');
+
+//task date
+  var $panelTask = $('.panel-task');
+  var $taskH3title = $('.title-task-row > h3'); //save
+  var $taskInputTitle= $('.task-input-title');
+  var $taskH3Date = $('.date-task-row > h3'); //save
+  var $taskInputDate = $('.task-input-date');
+  var $taskAreaBody = $('.task-area-body'); // save
+  var $btnCloseTask = $('.btn-close-task');
+
+// Code for the Note
+  
+  $titleNote.click( function() {
+    change(this,$inputTitleNote);
+  });
+
+  $inputTitleNote.on({
+    'focusout': function () {
+      loseFocus(this,$titleNote,'Title:');
+    } ,
+    'keyup': function() {
+      maxtext(this);
+    }
+  });
+
+  $dateNote.click( function() {
+    change(this,$inputDateNote);
+  });
+
+  $inputDateNote.datepicker(dateFormat).on('hide',function() {
+    loseFocus(this,$dateNote,'mm/dd/yyyy');
+    $txtBodyNote.focus();
+  });
+
+// btn save or cancel
+  
+  $btnSaveNote.on('click',function(e) {
+    e.preventDefault();
+    save();
+  });
+
+// Code for task Date
+  $taskH3Date.each(function(index,elem) {
+
+    var elem1 = $taskInputDate.eq(index);
+    var body = $taskAreaBody.eq(index);
+
+    $(elem1).datepicker(dateFormat).on('hide',function() {
+      loseFocus(elem1,elem,'mm/dd/yyyy');
+      $(body).focus();
     });
 
     $(elem).click(function () {
-      taskDateChange(elem,$elem1);
+      change(elem,elem1);
     }); 
   });
 
 // Code for task title
-  $($taskH3title).each(function(index,elem) {
+  $taskH3title.each(function(index,elem) {
 
-    var $elem1 = $($taskInputTitle).eq(index);
+    var elem1 = $taskInputTitle.eq(index);
+    var btnClose = $btnCloseTask.eq(index);
+    var panelTask = $panelTask.eq(index);
+    
+    $(btnClose).click(function (e) {
+      console.log($panelTask,index);
+      e.preventDefault();
+      $(panelTask).remove();
+    });
 
-    $($elem1).on({
+    $(elem1).on({
       'focusout': function() {
-        loseFocusDate($elem1,elem,'Title:');
+        loseFocus(elem1,elem,'Title:');
       },
       'keyup': function() {
-        maxtext($elem1);
+        maxtext(elem1);
       }
     });
 
     $(elem).click(function () {
-      taskDateChange(elem,$elem1);
+      change(elem,elem1);
     } );
 
   });
@@ -60,9 +106,9 @@ $(document).on('ready',function() {
   };
 
 //Change element and set the value
-  function taskDateChange(elem,elem1) {
+  function change(elem,elem1) {
      
-    var date= $(elem).text();
+    var date = $(elem).text();
 
     /*console.log($taskH3Date.length);
     $(this).each(function(index,elem) {
@@ -76,14 +122,14 @@ $(document).on('ready',function() {
   };
 
 //when the element lost the focuse chagen it
-  function loseFocusDate(elem,elem1,valf) {
+  function loseFocus(elem,elem1,val) {
     
-    var date =  valf === 'mm/dd/yyyy' ? 'Date: ': ''
-    console.log(date+' '+valf);
-    date += $(elem).val();
+    //var date =  val === 'mm/dd/yyyy' ? 'Date: ': ''
+    //console.log(date+' '+val);
+    var date = $(elem).val();
     
-    if(!date || date === 'Date: ')
-      date += valf;
+    if(!date)
+      date += val;
 
     $(elem1).text(date);
     changeElement(elem,elem1);
@@ -108,5 +154,24 @@ $(document).on('ready',function() {
       $(elem).val(text);
     }
   }
+
+//save note
+function save () {
+  var note = {
+    title: $titleNote.text(),
+    date: $dateNote.text()
+  };
+  console.log(note);
+  $.ajax({
+    url: '/notes/new',
+    type: 'post',
+    datatype: 'json',
+    data: note,
+    sucess: function(data) {
+      console.log(note);
+    }
+  });
+  //$.post('/notes/new',note);
+}
 
 })

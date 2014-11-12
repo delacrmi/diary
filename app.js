@@ -33,6 +33,7 @@ app.use('/users', users);
 app.use('/login',login);
 app.use('/notes',notes);
 app.get('/notes/new',notes);
+app.post('/notes/new',notes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
