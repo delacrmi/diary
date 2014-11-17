@@ -27,7 +27,7 @@ block content
             h3.panel-title Tasks
           
           .row.task-container(style= 'padding: 10px')
-            -for(var a=0; a<4 ; a++)
+            -for(var a=0; a<0 ; a++)
               .col-lg-4.col-md-6.col-sm-6.col-xs-12.panel-task
                 div.panel.panel-success
                   div.panel-heading
@@ -45,8 +45,8 @@ block content
                   div.panel-body
                     textarea.form-control.task-area-body(row=8 style='height: 100px' placeholder='Body task')
           .row
-            .col-lg-offset-6.col-md-offset-6.col-sm-offset-6.col-xs-offset-6.col-lg-1.col-md-1.col-sm-1.col-xs-2.controler-task
-              a.btn(data-toggle= 'tooltip' title= 'add Task')
+            .col-lg-offset-5.col-md-offset-6.col-sm-offset-5.col-xs-offset-5.col-lg-1.col-md-2.col-sm-1.col-xs-1.controler-task
+              a.btn(id= 'new-task' data-toggle= 'tooltip' title= 'add Task')
                 span.fa.fa-plus-circle.fa-2x
 
 

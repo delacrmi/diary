@@ -17,9 +17,7 @@ router.get('/',function (req, res) {
 
 //new notes
 router.post('/notes/new',function(req, res) {
-	console.log(req.data);
-	console.log(req.note);
-	console.log(req.data.note);
+	console.log(req.body);
 	//var note = new Notes(req.note);
 	//note.title = 'Prueba'
 	/*note.save(function(err) {
