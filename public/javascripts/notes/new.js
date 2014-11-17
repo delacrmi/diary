@@ -258,7 +258,20 @@ $(document).on('ready',function() {
 
       for(var index in arrayTask){
         if(arrayTask[index] !== undefined){
+          if(note.task === undefined)
+            note.task = [];
           
+          var task = {};
+          if(arrayTask[index].title.text() !== 'Title:')
+            task.title = arrayTask[index].title.text();
+          if(arrayTask[index].date.text() !== 'Date: mm/dd/yyyy'){
+            var date = arrayTask[index].date.text();
+            task.date = new Date(parseInt(date.substr(6)),parseInt(date.substr(0,2)),parseInt(date.substr(3,2));
+          }
+          if(arrayTask[index].body.text() !== '')
+            task.body = arrayTask[index].body.text();
+          
+          note.task.push(task);
         }
       }
 
