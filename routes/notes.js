@@ -14,12 +14,11 @@ router.get('/',function (req, res) {
 	});
 });
 
-
 //new notes
 router.post('/notes/new',function(req, res) {
 	console.log(req.body);
-	//var note = new Notes(req.note);
-	//note.title = 'Prueba'
+	res.end();
+	//var note = new Notes(req.body);
 	/*note.save(function(err) {
 		if(err)
 			console.error(err);

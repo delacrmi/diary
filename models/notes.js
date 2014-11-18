@@ -12,7 +12,7 @@ var NoteSchema = new Schema({
     task:[{
             id: String,
             title: String,
-            desc: String,
+            body: String,
             dateDo: Date,
             done: Boolean 
         }]
