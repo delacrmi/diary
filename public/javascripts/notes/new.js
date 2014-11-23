@@ -196,45 +196,59 @@ $(document).on('ready',function() {
 
   //save note
     function save () {
-      var note = {
-        title: $titleNote.text(),
-        date: $dateNote.text(),
-        body: $txtBodyNote.val()
-      };
+      var note = {};
+      note.task = [];
+
+      var date;
+        
+      if ($titleNote.text() !== 'Title:')
+        note.title = $titleNote.text();
+      if ($dateNote.text() !== 'Date: mm/dd/yyyy'){
+        date = $dateNote.text();
+        note.date = new Date(parseInt(date.substr(12)),parseInt(date.substr(6,2)),parseInt(date.substr(9,2)));
+      }
+      if ($txtBodyNote.val())
+        note.body = $txtBodyNote.val()
 
       for(var index in arrayTask){
         if(arrayTask[index] !== undefined){
-          if(note.task === undefined)
-            note.task = [];
-          
           var task = {};
           if(arrayTask[index].title.text() !== 'Title:')
             task.title = arrayTask[index].title.text();
           if(arrayTask[index].date.text() !== 'Date: mm/dd/yyyy'){
-            var date = arrayTask[index].date.text();
-            task.date = new Date(parseInt(date.substr(12)),parseInt(date.substr(6,2)),parseInt(date.substr(9,2)));
+            date = arrayTask[index].date.text();
+            task.dateDo = new Date(parseInt(date.substr(12)),parseInt(date.substr(6,2)),parseInt(date.substr(9,2)));
           }
           if(arrayTask[index].body.val() !== '')
             task.body = arrayTask[index].body.val();
           
-          task.id = index;
           task.done = false;
+
+          console.log(task);
 
           note.task.push(task);
         }
       }
+      
+      console.log(note.task[0].title);
+      /*if (Ntask.length > 0)
+        note.task = Ntask;*/
 
       console.log(note);
-      $.ajax({
+
+      sendToServer(note).done(function (data) {
+        console.log('note received', data);
+      });
+    }
+
+    function sendToServer(note){
+      return $.ajax({
         url: '/notes/new',
         type: 'post',
-        datatype: 'json',
-        data: note,
-        sucess: function(data) {
-          console.log(note);
-        }
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(note),
       });
-      //$.post('/notes/new',note);
     }
 
 })

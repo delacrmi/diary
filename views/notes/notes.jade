@@ -7,42 +7,58 @@ block scripts
 block content
   div.container
     div.row
-      -each note in notes
-        div.col-lg-4.col-md-4.col-sm-6.col-xs-12
-          div.panel.panel-default
-            div.panel-heading
-              div.row
-                div.col-md-9
-                  h3.panel-title= note.title
-                div.col-md-3
-                  lable Date
-            div.panel-body
-              p= note.body
-            div.panel-task
-              div.panel-heading-task.text-center.gradiente-gray
-                  h3.panel-title Tasks
-              div.panel-body-task
-                p Aqui van las tareas
-            div.panel-footer.clearfix
-              div.pull-right.btn-toolbar
-                a.btn.btn-primary(href='#' data-toggle='modal' data-target='#'+note._id) show
-                a.btn.btn-primary(id='edit-note' data-toggle='tooltip' data-placement='bottom' title='edit' href='./login') 
-                  span.fa.fa-pencil.fa-md
-                a.btn.btn-danger(data-toggle='tooltip' data-placement='bottom' title='detele' href='#') 
-                  span.fa.fa-trash-o.fa-md
+      -if (notes.length !== 0)
+        -each note in notes
+          div.col-lg-4.col-md-4.col-sm-6.col-xs-12
+            div.panel.panel-default
+              div.panel-heading
+                div.row
+                  div.col-md-9
+                    h3.panel-title= note.title
+                  div.col-md-3
+                    -var date = note.date.getMonth()+'/'+note.date.getDate()+'/'+note.date.getFullYear()
+                    lable=  date
+              div.panel-body
+                p= note.body
+              div.panel-task
+                div.panel-heading-task.text-center.gradiente-gray
+                    h3.panel-title Tasks
+                div.panel-body-task
+                  -if (note.task.length !== 0)
+                    ul.list-group
+                      -each task in note.task
+                        li.list-group-item.list-group-item-success
+                          .row
+                            .col-lg-8
+                              label.panel-title= task.title
+                            .col-lg-4
+                              -if(task.dateDo !== undefined)
+                                -var date = task.dateDo.getMonth() == 0? '12/':task.dateDo.getMonth()+'/' 
+                                -date += task.dateDo.getDate() < 10? '0'+task.dateDo.getDate(): task.dateDo.getDate()
+                                -date += '/'+task.dateDo.getFullYear();
+                                label= date
+                  -else
+                    p Body Task
+              div.panel-footer.clearfix
+                div.pull-right.btn-toolbar
+                  a.btn.btn-primary(href= '#' data-toggle='modal' data-target='#'+note._id) show
+                  a.btn.btn-primary(id='edit-note' data-toggle='tooltip' data-placement='bottom' title='edit' href='./login') 
+                    span.fa.fa-pencil.fa-md
+                  a.btn.btn-danger(data-toggle='tooltip' data-placement='bottom' title='detele' href='#') 
+                    span.fa.fa-trash-o.fa-md
 
-          div.modal.fade.modal-note(id= note._id)
-            div.modal-dialog
-              div.modal-content
-                div.modal-header
-                  .row
-                    div.col-md-9
-                      h3.panel-title= note.title
-                    div.col-md-3
-                      lable Date
-                      button(type= 'button' data-dismiss= 'modal').close &times;
-                div.modal-body
-                  Hello world!
-                <!-- dialog buttons -->
-                div.modal-footer
-                  button(type='button').btn.btn-primary OK
+            div.modal.fade.modal-note(id= note._id)
+              div.modal-dialog
+                div.modal-content
+                  div.modal-header
+                    .row
+                      div.col-md-9
+                          h3.panel-title= note.title
+                      div.col-md-3
+                        lable Date
+                        button(type= 'button' data-dismiss= 'modal').close &times;
+                  div.modal-body
+                    Hello world!
+                  <!-- dialog buttons -->
+                  div.modal-footer
+                    button(type='button').btn.btn-primary OK

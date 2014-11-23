@@ -9,6 +9,8 @@ $(document).on('ready',function() {
     });
 
   });
+
+  console.log(arguments);
   
 
   /*bootbox.dialog({

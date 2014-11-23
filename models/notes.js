@@ -9,8 +9,7 @@ var NoteSchema = new Schema({
     title: String,
     date: Date,
     body: String,
-    task:[{
-            id: String,
+    task: [{
             title: String,
             body: String,
             dateDo: Date,

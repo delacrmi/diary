@@ -44,11 +44,9 @@ block content
                         input.input-format-note.task-input-date(id= 'input-task-date' type='text' placeholder='Date: dd/mm/yy' style= 'display: none')
                   div.panel-body
                     textarea.form-control.task-area-body(row=8 style='height: 100px' placeholder='Body task')
-          .row
-            .col-lg-offset-5.col-md-offset-6.col-sm-offset-5.col-xs-offset-5.col-lg-1.col-md-2.col-sm-1.col-xs-1.controler-task
-              a.btn(id= 'new-task' data-toggle= 'tooltip' title= 'add Task')
-                span.fa.fa-plus-circle.fa-2x
-
+          
+          div.row-controler-task.row
+            img(id= 'new-task' src= '/images/add.png' data-toggle= 'tooltip' title= 'add Task')
 
           div.panel-footer.clearfix
             div.pull-right.btn-toolbar
