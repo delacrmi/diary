@@ -5,13 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var http = require('http');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
+var mongoose = require('./config/mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
 var notes = require('./routes/notes');
 
+var db = mongoose();
 var app = express();
 
 // view engine setup
@@ -66,13 +68,13 @@ app.use(function(err, req, res, next) {
     });
 });
 
-mongoose.connect('mongodb://localhost/notes', function(err, res) {
+/*mongoose.connect('mongodb://localhost/notes', function(err, res) {
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
   } else {
     console.log('Connected to Database');
   }
-});
+});*/
 
 http.createServer(app).listen(app.get('port'),function() {
     console.log('The server is running in the port '+app.get('port'));

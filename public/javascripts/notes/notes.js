@@ -1,4 +1,4 @@
-$(document).on('ready',function() {
+$(document).on('ready',function () {
   //http://bootboxjs.com/
   var $modal = $('.modal-note');
   var $prueba = $('.prueba');
@@ -9,10 +9,6 @@ $(document).on('ready',function() {
     });
 
   });
-
-  console.log(arguments);
-  
-
   /*bootbox.dialog({
     title: "This is a form in a modal.",
     message: '<div class="row">  ' +
