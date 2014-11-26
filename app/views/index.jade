@@ -1,0 +1,23 @@
+extends layout
+
+
+block links
+
+block content
+  
+  <!-- Usar la propiedad 'title' para renderizar un título de página  -->
+  title= title
+
+  <!-- Si un usuario es autentificado, mostrar el nombre completo del usuario, de no ser así mostrar los enlaces de autentificación -->
+  -if ( userFullName )
+    h2= userFullName
+    a(href='/signout') Cerrar Sesión
+  -else
+    a(href='/signup') Crear Cuenta
+    a(href='/signin') Identificarse
+  
+
+block scripts
+  script(src='/javascripts/index.js')
+    
+      

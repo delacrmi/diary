@@ -1,0 +1,19 @@
+
+<!-- Mostrar mensajes Flash  -->
+-for(var i in messages)
+   div.flash= messages[i]
+
+<!-- Renderizar el formulario signin -->
+form(action="/signin" method="post")
+  div
+    label Usuario:
+    input(type="text" name="username")
+
+  div
+    label Contraseña:
+    input(type="password" name="password")
+  
+  div
+    input(type="submit" value="Identificarse")
+
+a(href="/oauth/google") Identificarse usando Google

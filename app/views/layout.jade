@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='/stylesheets/font-awesome.min.css')
+    link(rel='stylesheet', href='/stylesheets/datepicker.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    block links
+
+    title= title
+
+  body
+    div.container
+      .row
+        .col-lg-6.col-md-5.col-sm-2
+          div.brand
+            a.title(href='#') Diary
+            
+        .col-lg-6.col-md-7.col-sm-10
+          nav.navbar(role='navigation')
+            <!-- El logotipo y el icono que despliega el menú se agrupan-->
+            <!-- para mostrarlos mejor en los dispositivos móviles -->
+            div.navbar-header
+              button.navbar-toggle(type='button' data-toggle='collapse' data-target='#collapse-1')
+                span.fa.fa-list-ul.fa-md
+            
+            <!-- Agrupar los enlaces de navegación, los formularios y cualquier-->
+            <!-- otro elemento que se pueda ocultar al minimizar la barra -->
+            div.collapse.navbar-collapse(id='collapse-1')
+              ul.nav.navbar-nav.navbar-right
+                li
+                  form.btn-toolbar.navbar-form(role='search')
+                    div.form-group
+                      input.form-control(type='text' placeholder='search')
+                    button.btn.btn-default(type='submit') 
+                      span.fa.fa-search
+                li
+                  a(href='/notes') Notes
+                li
+                  a(href='/notes/new') New Note
+                li
+                  a(href='/login') Login
+
+    block content
+    
+    script(src='/javascripts/jquery-2.1.1.min.js')
+    script(src='/bootstrap/js/bootstrap.min.js')
+    script(src='/javascripts/bootstrap-datepicker.js')
+    block scripts
+

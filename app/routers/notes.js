@@ -1,5 +1,7 @@
 'use strict'
 
+//var notes1 = require('../controllers/notes.server.controller');
+
 var express = require('express');
 var router = express.Router();
 var Notes = require('../app/models/notes')

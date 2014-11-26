@@ -1,9 +1,7 @@
+'use strict';
+
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
-
-//mongoose.connect('mongodb://localhost/notes');
-
-//var db = mongoose.connection;
 
 var NoteSchema = new Schema({
     title: String,
@@ -17,4 +15,4 @@ var NoteSchema = new Schema({
         }]
 	});
 
-module.exports = mongoose.model('Notes', NoteSchema);
+mongoose.model('Notes', NoteSchema);

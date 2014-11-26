@@ -1,3 +1,4 @@
 module.exports = {
-	db: 'mongodb://localhost/notes'
+	db: 'mongodb://localhost/notes',
+	sessionSecret: 'developmentSessionSecret'
 }
