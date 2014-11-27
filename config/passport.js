@@ -16,5 +16,7 @@ module.exports = function() {
 		});
 	});
 
+	//adding the strategies files
 	require('./strategies/local.js')();
+	require('./strategies/google.js')();
 };

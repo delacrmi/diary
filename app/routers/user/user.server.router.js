@@ -4,6 +4,8 @@ var user = require('../../controllers/user/user.server.controller'),
 	passport = require('passport');
 
 module.exports = function(app) {
+	
+	//connecting ussing local strategy
 	app.route('/signup')
 	.get(user.renderSignup)
 	.post(user.signup);
@@ -12,8 +14,22 @@ module.exports = function(app) {
 	.get(user.renderSignin)
 	.post(passport.authenticate('local',{
 		successRedirect: '/',
-		failureRedirect: 'signin',
+		failureRedirect: '/signin',
 		failureFlash: true
+	}));
+
+	//connecting ussing local strategy
+	app.get('/oauth/google',passport.authenticate('google',{
+		scope: [
+			'https://www.googleapis.com/auth/userinfo.profile',
+			'https://www.googleapis.com/auth/userinfo.email'
+		],
+		failureRedirect: '/signin'
+	}));
+
+	app.get('/oauth/google/callback',passport.authenticate('google',{
+		failureRedirect: '/signin',
+		successRedirect: '/'
 	}));
 
 	//Configurar la route 'signout'

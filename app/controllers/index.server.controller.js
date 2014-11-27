@@ -6,5 +6,6 @@ exports.render = function(req, res) {
 	req.session.lastVisit = new Date();*/
 	res.render('index',{ 
 		title: 'Express',
-		userFullName: req.user ? req.user.fullName : '' });
+		user: JSON.stringify(req.user)
+	});
 };
